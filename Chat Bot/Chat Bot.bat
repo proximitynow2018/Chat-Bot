@@ -47,8 +47,8 @@ echo All ready! (hopefully)
 goto chatbot
 :chatbot
 cls
-title Chatbot v1.0
-echo Chatbot v1.0
+title Chatbot v1.1
+echo Chatbot v1.1
 echo github.com/proximitynow2018/chat-bot/
 echo.
 echo 1) Start chatbot
@@ -62,15 +62,12 @@ if %errorlevel% == 1 goto start
 if %errorlevel% == 2 start "" http://www.github.com/proximitynow2018/chat-bot/&&goto chatbot
 if %errorlevel% == 3 goto exit
 :start
-cd %orgcd%\speech\%speechpack%
 cls
-for /f "delims=" %%a in (greet.speech) DO ( 
-echo %%a
-)
+echo Write to talk to your CPU
 goto talk
 :talk
 echo.
-set /p usersay=
+set /p usersay=You: 
 goto scan
 
 :scan
@@ -82,11 +79,12 @@ set foundspeech=%%a
 if %usersay% == %%b goto found
 )
 )
+set foundspeech=noresponse
 :found
 echo.
 cd %orgcd%\speech\%speechpack%
 for /f "delims=" %%c in (%foundspeech%.speech) DO ( 
-echo %%c
+echo CPU: %%c
 )
 goto talk
 
