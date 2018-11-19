@@ -44,6 +44,7 @@ echo Found speechpack checking contents...
 cd %speechpack%
 tree /f /a
 echo All ready! (hopefully)
+pause
 goto chatbot
 :chatbot
 cls
@@ -59,6 +60,32 @@ echo 3) Exit
 echo.
 choice /c 123
 if %errorlevel% == 1 goto start
-if %errorlevel% == 2 start "" http://www.github.com/proximitynow2018/chat-bot/
+if %errorlevel% == 2 start "" http://www.github.com/proximitynow2018/chat-bot/&&goto chatbot
 if %errorlevel% == 3 goto exit
+:start
+cd %orgcd%\speech\%speechpack%
+cls
+for /f "delims=" %%a in (greet.speech) DO ( 
+echo %%a
+)
+goto talk
+:talk
+echo.
+set /p usersay=
+goto scan
+
+:scan
+cd %orgcd%\speech\%speechpack%\user
+for /f "delims=" %%a in (greet.speech) DO ( 
+if %usersay% == %%a goto foundgreet
+)
+:foundgreet
+echo.
+cd %orgcd%\speech\%speechpack%
+for /f "delims=" %%a in (greet.speech) DO ( 
+echo %%a
+)
+goto talk
+
+pause
 :exit
