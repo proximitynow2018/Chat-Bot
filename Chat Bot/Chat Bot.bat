@@ -75,15 +75,19 @@ set /p usersay=
 goto scan
 
 :scan
+cd %orgcd%\speech\%speechpack%
+for /f "delims=" %%a in (sayings.speeches) DO ( 
 cd %orgcd%\speech\%speechpack%\user
-for /f "delims=" %%a in (greet.speech) DO ( 
-if %usersay% == %%a goto foundgreet
+for /f "delims=" %%b in (%%a.speech) DO ( 
+set foundspeech=%%a
+if %usersay% == %%b goto found
 )
-:foundgreet
+)
+:found
 echo.
 cd %orgcd%\speech\%speechpack%
-for /f "delims=" %%a in (greet.speech) DO ( 
-echo %%a
+for /f "delims=" %%c in (%foundspeech%.speech) DO ( 
+echo %%c
 )
 goto talk
 
