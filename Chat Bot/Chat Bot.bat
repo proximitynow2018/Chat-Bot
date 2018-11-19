@@ -51,15 +51,6 @@ title Chatbot v1.0
 echo Chatbot v1.0
 echo github.com/proximitynow2018/chat-bot/
 echo.
-echo Patchnotes:
-echo.
-echo YAY! The program is public have fun! and follow the instructions on the GitHub if you want to create your own speech pack
-echo.
-pause
-cls
-echo Chatbot v1.0
-echo github.com/proximitynow2018/chat-bot/
-echo.
 echo 1) Start chatbot
 echo.
 echo 2) Visit GitHub
