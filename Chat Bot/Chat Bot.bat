@@ -1,6 +1,15 @@
 @echo off
 title Chat Bot
-if exist Settings.dat (
+:test1
+if exist Settings-Speech.dat (
+goto test2
+) else (
+echo Please run the setup.bat
+pause
+goto exit
+)
+:test2
+if exist Settings-Name.dat (
 goto start
 ) else (
 echo Please run the setup.bat

@@ -6,5 +6,9 @@ echo.
 echo Speech File Name (Do 'none' for default)
 set /p name=
 cls
+echo Your Name
+set /p yname=
+cls
 echo Applying Settings...
-echo %name%>Settings.dat
+echo %name%>Settings-Speech.dat
+echo %name%>Settings-Name.dat
