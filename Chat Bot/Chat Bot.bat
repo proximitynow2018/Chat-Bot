@@ -1,6 +1,6 @@
 @echo off
-title Chat Bot
 set orgcd=%cd%
+title Chat Bot
 cd settings
 :test1
 if exist speech.dat (
@@ -47,8 +47,8 @@ echo All ready! (hopefully)
 goto chatbot
 :chatbot
 cls
-title Chatbot v1.1
-echo Chatbot v1.1
+title Chatbot v1.1.1
+echo Chatbot v1.1.1
 echo github.com/proximitynow2018/chat-bot/
 echo.
 echo 1) Start chatbot
@@ -67,6 +67,7 @@ echo Write to talk to your CPU
 goto talk
 :talk
 echo.
+set usersay=null
 set /p usersay=You: 
 goto scan
 
@@ -76,17 +77,22 @@ for /f "delims=" %%a in (sayings.speeches) DO (
 cd %orgcd%\speech\%speechpack%\user
 for /f "delims=" %%b in (%%a.speech) DO ( 
 set foundspeech=%%a
-if %usersay% == %%b goto found
+if "%usersay%" == "%%b" goto found
+)
+)
+if exist leave.speech (
+for /f "delims=" %%b in (leave.speech) DO ( 
+set foundspeech=gotomenu
+if "%usersay%" == "%%b" goto found
 )
 )
 set foundspeech=noresponse
 :found
 echo.
 cd %orgcd%\speech\%speechpack%
-for /f "delims=" %%c in (%foundspeech%.speech) DO ( 
-echo CPU: %%c
+if "%foundspeech%" == "gotomenu" goto chatbot
+for /f "delims=" %%a in (%foundspeech%.speech) DO ( 
+echo CPU: %%a
 )
 goto talk
-
-pause
 :exit
